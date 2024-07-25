@@ -32,12 +32,17 @@ const Calculator: React.FC = () => {
 
   // Function to calculate total bill based on bill amount and tip percentage
   const calculateTotalBill = (): void => {
-    // 
-  }
+    // Check if bill amount and tip percentage are valid numbers and bill amount is greater than 0
+    if (typeof billAmount === "number" && typeof tipPercentage === "number" && billAmount > 0) {
+      const total = (billAmount * tipPercentage) / 100; // Calculate total
+      setTotalBill(total); // Update total bill state
+    } else {
+      setTotalBill(null); // Set total bill state to null if bill amount is invalid
+    }
+  };
 
   return (
     <div className="calculator">
-      <h2>Total Bill</h2>
       {/* Form for entering bill amount and tip and displaying total bill */}
       <form onSubmit={(e) => {e.preventDefault(); calculateTotalBill();}}>
         <div>
@@ -60,7 +65,12 @@ const Calculator: React.FC = () => {
             onChange={handleTipPercentageChange}
           />
         </div>
+        <button type="submit">Submit</button>
       </form>
+      {/* Display the calculated total bill if available */}
+      {totalBill !== null && (
+        <p>Your total bill is {totalBill}.</p>
+      )}
     </div>
   );
 };
