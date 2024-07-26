@@ -1,4 +1,4 @@
-import React, { useState }from "react";
+import React, { useState } from "react";
 
 const Calculator: React.FC = () => {
   // State variables for Bill Amount and Tip Percentage
@@ -6,7 +6,14 @@ const Calculator: React.FC = () => {
   const [tipPercentage, setTipPercentage] = useState<number | string>("");
   const [totalBill, setTotalBill] = useState<number | null>(null);
 
-  // Handler for changes in the bill amount input field
+  /**
+   * Handler for changes in the bill amount input field.
+   *
+   * @remarks
+   * This function updates the `billAmount` state with the value from the input field.
+   *
+   * @param event - The change event from the bill amount input field.
+   */
   const handleBillAmountChange = (event: React.ChangeEvent<HTMLInputElement>): void => {
     // Update bill amount state with the value from the input field
     setBillAmount(event.target.valueAsNumber);
@@ -18,7 +25,14 @@ const Calculator: React.FC = () => {
     }
   };
 
-  // Handler for changes in the tip percentage input field
+  /**
+   * Handler for changes in the tip percentage input field.
+   *
+   * @remarks
+   * This function updates the `tipPercentage` state with the value from the input field.
+   *
+   * @param event - The change event from the tip percentage input field.
+   */
   const handleTipPercentageChange = (event: React.ChangeEvent<HTMLInputElement>): void => {
     // Update tip percentage state with the value from the input field
     setTipPercentage(event.target.valueAsNumber);
@@ -30,7 +44,13 @@ const Calculator: React.FC = () => {
     }
   };
 
-  // Function to calculate total bill based on bill amount and tip percentage
+  /**
+   * Function to calculate total bill based on bill amount and tip percentage.
+   *
+   * @remarks
+   * This function calculates the total bill based on the `billAmount` and `tipPercentage` states.
+   * If either value is invalid, it sets the `totalBill` state to `null`.
+   */
   const calculateTotalBill = (): void => {
     // Check if bill amount and tip percentage are valid numbers and bill amount is greater than 0
     if (typeof billAmount === "number" && typeof tipPercentage === "number" && billAmount > 0) {
